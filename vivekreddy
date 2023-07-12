@@ -1,0 +1,39 @@
+const express = require('express');
+const app=express();
+const port=8008;
+app.get('/',(req,res)=>{
+    res.send('Welcome to the number management service');
+});
+app.listen(port,()=>{
+    console.log('Server is running on port ${port}');
+});
+
+app.get('/prime/:num1',(req,res)=>{
+    const num1=parseInt(req.params.num1);
+    let isprime=true;
+    if(num1==1)
+    console.log('1 is neither prime nor composite');
+    else if(num1>1)
+    {
+        for(let i=2;i<num1;i++)
+        {
+            if(num1%i==0)
+            {
+                isprime=false;
+                break;
+            }
+        }
+        if(isprime)
+            console.log('${num1} is a prime number');
+        else 
+            console.log('${num1} is not a prime number');
+    
+    }
+    else 
+    {
+        console.log("The number is not a prime number");
+    }
+});
+app.listen(port,()=>{
+    console.log('Server is running on port');
+});
